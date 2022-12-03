@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <input type="text" name="nombre" id="nombre">
+  <input type="text" name="descripcion" id="descripcion">
+  <button onclick="guardar()">guardar</button>
+  <script>
+    function guardar() {
+      var data = JSON.stringify({
+        "nombre": document.getElementById('nombre').value,
+        "descripcion": document.getElementById('descripcion').value
+      });
+
+      var xhr = new XMLHttpRequest();
+      
+
+      xhr.addEventListener("readystatechange", function () {
+        if (this.readyState === 4) {
+          console.log(this.responseText);
+        }
+      });
+
+      xhr.open("POST", "http://localhost:5265/api/Producto");
+      xhr.setRequestHeader("Content-Type", "application/json");
+
+      xhr.send(data);
+    }
+
+
+  </script>
+</body>
+
+</html>

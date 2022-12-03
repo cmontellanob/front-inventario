@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <button onclick="obtenerListado()">llamar</button>
+  <div id="resultado">
+
+  </div>
+</body>
+<script>
+  function obtenerListado() {
+    var requestOptions = {
+      method: 'GET',
+      redirect: 'follow',
+
+    };
+    fetch("http://localhost:5265/api/Producto", requestOptions)
+      .then(response => response.text())
+      .then(result => {
+        resultado = JSON.stringify(result)
+        for (i = 0; i < resultado.length; i++) {
+          console.log(resultado[i]);
+        }
+      }
+      )
+      .catch(error => console.log('error', error))
+  }
+</script>
+
+</html>
